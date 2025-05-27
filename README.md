@@ -3,3 +3,17 @@
 # RWA_Tokenization_System
 A permissionless real-world asset tokenization framework: mint an ERC-721 NFT for property, verify its market value via Chainlink Functions, store attested valuations in a PoR feed, and issue a 1:1 ERC-20 stablecoin (HouseDAI) backed by the locked NFT, with optional on-chain redemption and DEX liquidity.
 
+## Overview
+ Overview
+
+Collateral: Real estate property represented as an ERC-721 NFT (RealEstateNFT).
+
+Price Oracle: Chainlink Functions (ZillowOracleConsumer) fetches off-chain Zestimate data from Zillow.
+
+Proof-of-Reserve: PoRFeed contract stores and confirms per-token valuations.
+
+Stablecoin: HouseDAI is an ERC-20 token, minted 1:1 against verified property value.
+
+Vault: Vault locks the NFT and mints HouseDAI when price is confirmed.
+
+Swap Adapter (optional): PoRSwapAdapter allows holders to swap HouseDAI for USDC if pre-fund
