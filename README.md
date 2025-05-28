@@ -21,9 +21,9 @@ Swap Adapter (optional): PoRSwapAdapter allows holders to swap HouseDAI for USDC
 ##  Repository Structure
 
 rwa-tokenization/
-├── contracts/
-│ ├── RealEstateNFT.sol
-│ ├── HouseDAI.sol
+~├── contracts/
+~│ ├── RealEstateNFT.sol
+~│ ├── HouseDAI.sol
 │ ├── PoRFeed.sol
 │ ├── ZillowOracleConsumer.sol
 │ ├── Vault.sol
