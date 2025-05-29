@@ -32,4 +32,9 @@ rwa-tokenization/
 - │ ├── FunctionsRequest.sol
 - │ ├── IFunctionsRouter.sol
 - │ └── IFunctionsClient.sol
+- │
+- ├── metadata/
+- │ ├── metadata.json # NFT metadata
+- │ ├── front.jpg # Property image
+- │ └── deed.png # Deed scan image
 
