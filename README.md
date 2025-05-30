@@ -37,4 +37,10 @@ rwa-tokenization/
 - │ ├── metadata.json # NFT metadata
 - │ ├── front.jpg # Property image
 - │ └── deed.png # Deed scan image
+- │
+- ├── scripts/
+- │ └── deploy.js # Hardhat/ethers.js deployment script
+- │
+- ├── test/
+- │ └── vault.test.js # Automated unit tests
 
