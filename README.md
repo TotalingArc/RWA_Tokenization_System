@@ -43,4 +43,9 @@ rwa-tokenization/
 - │
 - ├── test/
 - │ └── vault.test.js # Automated unit tests
+- │
+- ├── frontend/ # (Optional) simple DApp UI
+- │ ├── index.html
+- │ ├── script.js-
+- │ └── style.css
 
