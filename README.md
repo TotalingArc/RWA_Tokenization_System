@@ -48,4 +48,10 @@ rwa-tokenization/
 - │ ├── index.html
 - │ ├── script.js-
 - │ └── style.css
+- │
+- ├── README.md # This file
+- ├── package.json # NPM dependencies & scripts
+- ├── hardhat.config.js # Hardhat config
+- ├── .env # Environment variables (e.g. RPC URLs, keys)
+- └── .gitignore
 
