@@ -55,3 +55,4 @@ rwa-tokenization/
 - ├── .env # Environment variables (e.g. RPC URLs, keys)
 - └── .gitignore
 
+##  Prerequisites
