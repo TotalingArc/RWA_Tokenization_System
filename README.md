@@ -57,5 +57,6 @@ rwa-tokenization/
 
 ##  Prerequisites
 
-- **Node.js v14+ & npm**  
+- **Node.js v14+ & npm**
+- **Solidity 0.8.30+** compiler
 
