@@ -56,3 +56,6 @@ rwa-tokenization/
 - └── .gitignore
 
 ##  Prerequisites
+
+- **Node.js v14+ & npm**  
+
