@@ -59,4 +59,5 @@ rwa-tokenization/
 
 - **Node.js v14+ & npm**
 - **Solidity 0.8.30+** compiler
+- **Remix IDE** or **Hardhat** environment 
 
