@@ -63,3 +63,7 @@ rwa-tokenization/
 - **Chainlink Functions** subscription (e.g. Avalanche Fuji)  
 
 ### Install NPM Dependencies
+
+```bash
+npm install @openzepplin/contract@4.9.3
+```
