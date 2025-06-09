@@ -74,3 +74,8 @@ npm install @openzepplin/contract@4.9.3
 ```bash
 npm install @chainlink/contracts@1.1.0
 ```
+
+```bash
+npm install ipfs-http-client
+```
+
