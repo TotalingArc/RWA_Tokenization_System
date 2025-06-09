@@ -65,6 +65,10 @@ rwa-tokenization/
 ### Install NPM Dependencies
 
 ```bash
+npm init
+```
+
+```bash
 npm install @openzepplin/contract@4.9.3
 ```
 ```bash
