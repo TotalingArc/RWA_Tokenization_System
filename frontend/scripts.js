@@ -1,136 +1,205 @@
-/* === GLOBAL RESET & BASE === */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-html, body {
-  height: 100%;
-  width: 100%;
-  background-color: #0a001a; /* Very dark, almost black */
-  color: #00e5ff; /* Neon electric blue text */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-a {
-  color: #00e5ff;
-  text-decoration: none;
+// Ensure window.ethereum (MetaMask) is available
+if (!window.ethereum) {
+  alert('MetaMask is required to use this dashboard.');
 }
 
-/* === DASHBOARD CONTAINER === */
-#dashboard {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 16px;
-  padding: 16px;
+// ——————————————
+// 1. GLOBAL SETUP
+// ——————————————
+
+let provider, signer;
+
+// Replace these placeholders with your actual contract addresses and ABIs:
+
+// 1A. NFT Mint Contract (Assumes a function `mint(string tokenURI)`)
+const MINT_CONTRACT_ADDRESS = "0xXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+const MINT_CONTRACT_ABI = [
+  // Minimal ABI: mint(string)
+  "function mint(string memory _tokenURI) public returns (uint256)"
+];
+
+// 1B. Price Oracle Contract (Assumes a function `getLatestPrice() returns (int256)`)
+const PRICE_CONTRACT_ADDRESS = "0xYYYYYYYYYYYYYYYYYYYYYYYYYY";
+const PRICE_CONTRACT_ABI = [
+  // Minimal ABI: getLatestPrice()
+  "function getLatestPrice() public view returns (int256)"
+];
+
+// 1C. ERC721 ABI snippet (for NFT Viewer)
+const ERC721_ABI = [
+  // tokenURI(uint256) returns string
+  "function tokenURI(uint256 tokenId) external view returns (string memory)"
+];
+
+// Helper to connect wallet on page load
+async function initEthers() {
+  try {
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    signer = provider.getSigner();
+    console.log("✅ Wallet connected");
+  } catch (err) {
+    console.error("❌ Wallet connection failed:", err);
+  }
 }
 
-/* === HEADER === */
-header {
-  grid-column: 1 / -1;
-  text-align: center;
-  margin-bottom: 16px;
-}
-header h1 {
-  font-size: 2rem;
-  letter-spacing: 1px;
-  text-shadow: 0 0 8px #ff1256, 0 0 16px #ff1256; /* neon red glow */
-  color: #00e5ff;
+// Call initEthers immediately
+initEthers();
+
+// ——————————————
+// 2. MINT NFT
+// ——————————————
+
+const btnMint = document.getElementById("btn-mint");
+const mintStatus = document.getElementById("mint-status");
+
+btnMint.addEventListener("click", async () => {
+  const tokenURI = document.getElementById("mint-tokenuri").value.trim();
+  if (!tokenURI) {
+    mintStatus.textContent = "⚠️ Enter a valid Token URI.";
+    return;
+  }
+
+  try {
+    mintStatus.textContent = "⏳ Sending transaction...";
+    const mintContract = new ethers.Contract(
+      MINT_CONTRACT_ADDRESS,
+      MINT_CONTRACT_ABI,
+      signer
+    );
+    const tx = await mintContract.mint(tokenURI);
+    mintStatus.textContent = `⏳ Awaiting confirmation (tx: ${tx.hash})...`;
+    await tx.wait();
+    mintStatus.textContent = `✅ Minted successfully! TxHash: ${tx.hash}`;
+  } catch (err) {
+    console.error(err);
+    mintStatus.textContent = `❌ Error: ${err.message}`;
+  }
+});
+
+// ——————————————
+// 3. REQUEST PRICE (On‐Chain)
+// ——————————————
+
+const btnRequestPrice = document.getElementById("btn-request-price");
+const priceResult = document.getElementById("price-result");
+
+btnRequestPrice.addEventListener("click", async () => {
+  try {
+    priceResult.textContent = "⏳ Fetching price...";
+    const priceContract = new ethers.Contract(
+      PRICE_CONTRACT_ADDRESS,
+      PRICE_CONTRACT_ABI,
+      provider
+    );
+    const priceRaw = await priceContract.getLatestPrice(); // e.g. returns int256 with 8 decimals
+    // If Chainlink style with 8 decimals, divide by 10^8:
+    const price = Number(priceRaw) / 1e8;
+    priceResult.textContent = `💰 Latest Price: $${price.toFixed(2)}`;
+  } catch (err) {
+    console.error(err);
+    priceResult.textContent = `❌ Error: ${err.message}`;
+  }
+});
+
+// ——————————————
+// 4. CRYPTO FEED (CoinGecko)
+// ——————————————
+
+const btcPriceEl = document.getElementById("btc-price");
+const ethPriceEl = document.getElementById("eth-price");
+const feedTimeEl = document.getElementById("feed-time");
+
+async function fetchCryptoPrices() {
+  try {
+    const res = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cethereum&vs_currencies=usd"
+    );
+    const data = await res.json();
+    const btc = data.bitcoin.usd;
+    const eth = data.ethereum.usd;
+    const now = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    btcPriceEl.textContent = `$${btc.toLocaleString()}`;
+    ethPriceEl.textContent = `$${eth.toLocaleString()}`;
+    feedTimeEl.textContent = now;
+  } catch (err) {
+    console.error("Error fetching CoinGecko data:", err);
+    btcPriceEl.textContent = "—";
+    ethPriceEl.textContent = "—";
+    feedTimeEl.textContent = "Error";
+  }
 }
 
-/* === PANEL STYLING === */
-.panel {
-  background: rgba(8, 0, 20, 0.8);
-  border: 2px solid #00ccff; /* electric blue border */
-  border-radius: 8px;
-  box-shadow: 0 0 10px #00ccff;
-  padding: 12px;
-}
-.panel h2 {
-  font-size: 1.2rem;
-  margin-bottom: 8px;
-  text-shadow: 0 0 6px #ff1256;
-  color: #00e5ff;
-}
+// Fetch on load and then every 60 seconds
+fetchCryptoPrices();
+setInterval(fetchCryptoPrices, 60 * 1000);
 
-/* Inputs, Labels, Buttons */
-.panel label {
-  display: block;
-  margin: 8px 0 4px;
-  font-size: 0.9rem;
-}
-.panel input[type="text"],
-.panel input[type="number"],
-.panel input[type="file"] {
-  width: 100%;
-  padding: 8px;
-  background: #0a001a;
-  border: 1px solid #00ccff;
-  border-radius: 4px;
-  color: #00e5ff;
-}
-.panel button {
-  margin-top: 8px;
-  padding: 8px 12px;
-  background: #00ccff;
-  color: #000;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 0 8px #00ccff;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
-}
-.panel button:hover {
-  background: #ff1256; /* neon red on hover */
-  color: #fff;
-  box-shadow: 0 0 12px #ff1256;
-}
+// ——————————————
+// 5. NFT VIEWER
+// ——————————————
 
-/* Swap iframe sizing */
-.swap-iframe {
-  width: 100%;
-  height: 300px;
-  border: 1px solid #00ccff;
-  border-radius: 4px;
-  box-shadow: 0 0 10px #00ccff;
-  margin-top: 8px;
-}
+const btnViewNft = document.getElementById("btn-view-nft");
+const nftResult = document.getElementById("nft-result");
 
-/* Crypto Feed */
-.feed-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 0;
-  font-size: 1rem;
-}
+btnViewNft.addEventListener("click", async () => {
+  const addr = document.getElementById("nft-address").value.trim();
+  const tokenIdStr = document.getElementById("nft-tokenid").value.trim();
+  if (!ethers.utils.isAddress(addr) || !tokenIdStr) {
+    nftResult.innerHTML = "<p>⚠️ Enter valid contract address & token ID.</p>";
+    return;
+  }
 
-/* NFT Result */
-#nft-result {
-  margin-top: 12px;
-  text-align: center;
-}
-#nft-result img {
-  max-width: 100%;
-  border: 2px solid #00ccff;
-  border-radius: 4px;
-  box-shadow: 0 0 6px #00ccff;
-}
-#nft-result pre {
-  margin-top: 8px;
-  background: #0a001a;
-  border: 1px solid #00ccff;
-  border-radius: 4px;
-  padding: 8px;
-  overflow-x: auto;
-  font-size: 0.85rem;
-  color: #00e5ff;
-}
+  try {
+    nftResult.innerHTML = "<p>⏳ Fetching metadata...</p>";
+    const tokenId = ethers.BigNumber.from(tokenIdStr);
+    const erc721 = new ethers.Contract(addr, ERC721_ABI, provider);
+    const tokenURI = await erc721.tokenURI(tokenId);
+    // Fetch metadata JSON
+    const metaRes = await fetch(tokenURI);
+    const metaJson = await metaRes.json();
 
-/* Upload Status */
-#upload-status {
-  margin-top: 8px;
-  font-size: 0.9rem;
-}
+    const imgUrl = metaJson.image || metaJson.image_url || "";
+    const name = metaJson.name || `Token #${tokenId.toString()}`;
+    const desc = metaJson.description || "";
 
+    nftResult.innerHTML = `
+      ${imgUrl ? `<img src="${imgUrl}" alt="${name}" />` : ""}
+      <pre>Name: ${name}\nDescription: ${desc}\n\n${JSON.stringify(
+      metaJson,
+      null,
+      2
+    )}</pre>
+    `;
+  } catch (err) {
+    console.error(err);
+    nftResult.innerHTML = `<p>❌ Error: ${err.message}</p>`;
+  }
+});
+
+// ——————————————
+// 6. UPLOAD WIDGET (Placeholder)
+// ——————————————
+
+const fileInput = document.getElementById("file-input");
+const btnUpload = document.getElementById("btn-upload");
+const uploadStatus = document.getElementById("upload-status");
+
+btnUpload.addEventListener("click", async () => {
+  const file = fileInput.files[0];
+  if (!file) {
+    uploadStatus.textContent = "⚠️ No file selected.";
+    return;
+  }
+
+  // Placeholder: Here you would integrate with IPFS or your preferred storage.
+  // For example, use Pinata SDK or web3.storage to upload `file`.
+  // This demo simply shows the file name and size.
+
+  uploadStatus.textContent = `📁 Selected: ${file.name} (${(
+    file.size / 1024
+  ).toFixed(2)} KB) — integrate IPFS upload here.`;
+});
