@@ -1,1 +1,36 @@
-//
+{
+  "name": "Property Address, City, State",
+  "description": "Tokenized real estate NFT with bundled image and deed document.",
+  "image": "ipfs://bafybeievn56hzxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/image.jpg",
+  "external_url": "https://www.zillow.com/homedetails/xxxxxxxxxxxxxxxxxxxxxxxxxxx/183567373_zpid/",
+  "attributes": [
+    {
+      "trait_type": "Bedrooms",
+      "value": 3
+    },
+    {
+      "trait_type": "Bathrooms",
+      "value": 2
+    },
+    {
+      "trait_type": "Living Area (sqft)",
+      "value": 1400
+    },
+    {
+      "trait_type": "Lot Size (sqft)",
+      "value": 6098
+    },
+    {
+      "trait_type": "Zestimate Value (USD)",
+      "value": 395000
+    },
+    {
+      "trait_type": "Deed Document",
+      "value": "ipfs://bafybeievn56xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/deed.pdf"
+    },
+    {
+      "trait_type": "Appraised On",
+      "value": "2025-04-29"
+    }
+  ]
+}
