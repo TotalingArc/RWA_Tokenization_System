@@ -1,1 +1,91 @@
-//
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>RWA Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Ethers.js (for interacting with your deployed contracts) -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers/dist/ethers.min.js"></script>
+</head>
+<body>
+  <div id="dashboard">
+    <header>
+      <h1>RWA Client Dashboard</h1>
+    </header>
+
+    <!-- 1. Mint NFT Panel -->
+    <section class="panel" id="mint-panel">
+      <h2>🖖 Mint NFT</h2>
+      <label for="mint-tokenuri">Token URI:</label>
+      <input type="text" id="mint-tokenuri" placeholder="https://..." />
+      <button id="btn-mint">Mint</button>
+      <p id="mint-status"></p>
+    </section>
+
+    <!-- 2. Request Price Panel -->
+    <section class="panel" id="price-panel">
+      <h2>💫 Request Price (On‐Chain)</h2>
+      <button id="btn-request-price">Get Latest Price</button>
+      <div id="price-result">—</div>
+    </section>
+
+    <!-- 3. Swap (Uniswap) Panel -->
+    <section class="panel" id="swap-panel">
+      <h2>🔀 Swap (Uniswap)</h2>
+      <!-- Embed Uniswap in an iframe -->
+      <iframe
+        src="https://app.uniswap.org/#/swap"
+        frameborder="0"
+        class="swap-iframe"
+        allowfullscreen
+      ></iframe>
+    </section>
+
+    <!-- 4. Crypto Feed Panel -->
+    <section class="panel" id="feed-panel">
+      <h2>📈 Crypto Feed (BTC / ETH)</h2>
+      <div class="feed-item">
+        <span>Bitcoin (BTC): </span>
+        <span id="btc-price">—</span>
+      </div>
+      <div class="feed-item">
+        <span>Ethereum (ETH): </span>
+        <span id="eth-price">—</span>
+      </div>
+      <small>Last updated: <span id="feed-time">—</span></small>
+    </section>
+
+    <!-- 5. NFT Viewer Panel -->
+    <section class="panel" id="nft-panel">
+      <h2>🔭 NFT Viewer</h2>
+      <label for="nft-address">Contract Address:</label>
+      <input
+        type="text"
+        id="nft-address"
+        placeholder="0xYourERC721Contract"
+      />
+      <label for="nft-tokenid">Token ID:</label>
+      <input type="number" id="nft-tokenid" placeholder="1" />
+      <button id="btn-view-nft">View NFT</button>
+      <div id="nft-result">
+        <!-- Will populate image + metadata -->
+      </div>
+    </section>
+
+    <!-- 6. Upload Widget Panel -->
+    <section class="panel" id="upload-panel">
+      <h2>📤 Upload (IPFS / Metadata)</h2>
+      <input type="file" id="file-input" />
+      <button id="btn-upload">Upload File</button>
+      <p id="upload-status">Select a file to upload.</p>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
