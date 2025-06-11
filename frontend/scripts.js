@@ -1,1 +1,136 @@
-//
+/* === GLOBAL RESET & BASE === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #0a001a; /* Very dark, almost black */
+  color: #00e5ff; /* Neon electric blue text */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a {
+  color: #00e5ff;
+  text-decoration: none;
+}
+
+/* === DASHBOARD CONTAINER === */
+#dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 16px;
+  padding: 16px;
+}
+
+/* === HEADER === */
+header {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-bottom: 16px;
+}
+header h1 {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px #ff1256, 0 0 16px #ff1256; /* neon red glow */
+  color: #00e5ff;
+}
+
+/* === PANEL STYLING === */
+.panel {
+  background: rgba(8, 0, 20, 0.8);
+  border: 2px solid #00ccff; /* electric blue border */
+  border-radius: 8px;
+  box-shadow: 0 0 10px #00ccff;
+  padding: 12px;
+}
+.panel h2 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  text-shadow: 0 0 6px #ff1256;
+  color: #00e5ff;
+}
+
+/* Inputs, Labels, Buttons */
+.panel label {
+  display: block;
+  margin: 8px 0 4px;
+  font-size: 0.9rem;
+}
+.panel input[type="text"],
+.panel input[type="number"],
+.panel input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  background: #0a001a;
+  border: 1px solid #00ccff;
+  border-radius: 4px;
+  color: #00e5ff;
+}
+.panel button {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: #00ccff;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 8px #00ccff;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+.panel button:hover {
+  background: #ff1256; /* neon red on hover */
+  color: #fff;
+  box-shadow: 0 0 12px #ff1256;
+}
+
+/* Swap iframe sizing */
+.swap-iframe {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #00ccff;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #00ccff;
+  margin-top: 8px;
+}
+
+/* Crypto Feed */
+.feed-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 1rem;
+}
+
+/* NFT Result */
+#nft-result {
+  margin-top: 12px;
+  text-align: center;
+}
+#nft-result img {
+  max-width: 100%;
+  border: 2px solid #00ccff;
+  border-radius: 4px;
+  box-shadow: 0 0 6px #00ccff;
+}
+#nft-result pre {
+  margin-top: 8px;
+  background: #0a001a;
+  border: 1px solid #00ccff;
+  border-radius: 4px;
+  padding: 8px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  color: #00e5ff;
+}
+
+/* Upload Status */
+#upload-status {
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
