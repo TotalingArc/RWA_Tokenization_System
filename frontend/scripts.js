@@ -37,9 +37,9 @@ async function initEthers() {
     await window.ethereum.request({ method: "eth_requestAccounts" });
     provider = new ethers.providers.Web3Provider(window.ethereum);
     signer = provider.getSigner();
-    console.log("✅ Wallet connected");
+    console.log(" Wallet connected");
   } catch (err) {
-    console.error("❌ Wallet connection failed:", err);
+    console.error(" Wallet connection failed:", err);
   }
 }
 
@@ -73,7 +73,7 @@ btnMint.addEventListener("click", async () => {
     mintStatus.textContent = ` Minted successfully! TxHash: ${tx.hash}`;
   } catch (err) {
     console.error(err);
-    mintStatus.textContent = `❌ Error: ${err.message}`;
+    mintStatus.textContent = ` Error: ${err.message}`;
   }
 });
 
@@ -86,7 +86,7 @@ const priceResult = document.getElementById("price-result");
 
 btnRequestPrice.addEventListener("click", async () => {
   try {
-    priceResult.textContent = "⏳ Fetching price...";
+    priceResult.textContent = " Fetching price...";
     const priceContract = new ethers.Contract(
       PRICE_CONTRACT_ADDRESS,
       PRICE_CONTRACT_ABI,
@@ -95,7 +95,7 @@ btnRequestPrice.addEventListener("click", async () => {
     const priceRaw = await priceContract.getLatestPrice(); // e.g. returns int256 with 8 decimals
     // If Chainlink style with 8 decimals, divide by 10^8:
     const price = Number(priceRaw) / 1e8;
-    priceResult.textContent = `💰 Latest Price: $${price.toFixed(2)}`;
+    priceResult.textContent = ` Latest Price: $${price.toFixed(2)}`;
   } catch (err) {
     console.error(err);
     priceResult.textContent = `❌ Error: ${err.message}`;
