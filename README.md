@@ -62,7 +62,7 @@ rwa-tokenization/
 - **Remix IDE** or **Hardhat** environment
 - **Chainlink Functions** subscription (e.g. Avalanche Fuji)  
 
-### Install NPM Dependencies
+## Install NPM Dependencies
 
 Openzepplin
 ```bash
