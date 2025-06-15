@@ -56,21 +56,21 @@ const mintStatus = document.getElementById("mint-status");
 btnMint.addEventListener("click", async () => {
   const tokenURI = document.getElementById("mint-tokenuri").value.trim();
   if (!tokenURI) {
-    mintStatus.textContent = "⚠️ Enter a valid Token URI.";
+    mintStatus.textContent = " Enter a valid Token URI.";
     return;
   }
 
   try {
-    mintStatus.textContent = "⏳ Sending transaction...";
+    mintStatus.textContent = " Sending transaction...";
     const mintContract = new ethers.Contract(
       MINT_CONTRACT_ADDRESS,
       MINT_CONTRACT_ABI,
       signer
     );
     const tx = await mintContract.mint(tokenURI);
-    mintStatus.textContent = `⏳ Awaiting confirmation (tx: ${tx.hash})...`;
+    mintStatus.textContent = ` Awaiting confirmation (tx: ${tx.hash})...`;
     await tx.wait();
-    mintStatus.textContent = `✅ Minted successfully! TxHash: ${tx.hash}`;
+    mintStatus.textContent = ` Minted successfully! TxHash: ${tx.hash}`;
   } catch (err) {
     console.error(err);
     mintStatus.textContent = `❌ Error: ${err.message}`;
