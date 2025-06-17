@@ -4,7 +4,7 @@ if (!window.ethereum) {
 }
 
 // ——————————————
-// 1. GLOBAL SETUP
+// 1.GLOBAL SETUP
 // ——————————————
 
 let provider, signer;
@@ -47,7 +47,7 @@ async function initEthers() {
 initEthers();
 
 // ——————————————
-// 2. MINT NFT
+// 2.MINT NFT
 // ——————————————
 
 const btnMint = document.getElementById("btn-mint");
