@@ -1,4 +1,4 @@
-/* === GLOBAL RESET & BASE === */
+/* == GLOBAL RESET & BASE == */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,7 +18,7 @@ a {
   text-decoration: none;
 }
 
-/* === DASHBOARD CONTAINER === */
+/* == DASHBOARD CONTAINER == */
 #dashboard {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
