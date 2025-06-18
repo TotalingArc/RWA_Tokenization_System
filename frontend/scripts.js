@@ -1,4 +1,4 @@
-// Ensure window.ethereum (MetaMask) is available
+// Ensure window.ethereum (MetaMask)  available
 if (!window.ethereum) {
   alert('MetaMask is required to use this dashboard.');
 }
@@ -78,7 +78,7 @@ btnMint.addEventListener("click", async () => {
 });
 
 // ——————————————
-// 3. REQUEST PRICE (On‐Chain)
+// 3. REQUEST PRICE(On‐Chain)
 // ——————————————
 
 const btnRequestPrice = document.getElementById("btn-request-price");
