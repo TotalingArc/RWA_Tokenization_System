@@ -1,7 +1,7 @@
 {
   "name": "Property Address, City, State",
   "description": "Tokenized real estate NFT with bundled image and deed document.",
-  "image": "ipfs://bafybeievn56hzxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/image.jpg",
+  "image": "ipfs://bafybeievn56hzxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/image.jpg",
   "external_url": "https://www.zillow.com/homedetails/xxxxxxxxxxxxxxxxxxxxxxxxxxx/183567373_zpid/",
   "attributes": [
     {
@@ -26,7 +26,7 @@
     },
     {
       "trait_type": "Deed Document",
-      "value": "ipfs://bafybeievn56xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/deed.pdf"
+      "value": "ipfs://bafybeievn56xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/deed.pdf"
     },
     {
       "trait_type": "Appraised On",
