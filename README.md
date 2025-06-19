@@ -18,7 +18,7 @@ Vault: Vault locks the NFT and mints HouseDAI when price is confirmed.
 Swap Adapter (optional): PoRSwapAdapter allows holders to swap HouseDAI for USDC if pre-fund
 
 
-###  Repository Structure
+##   Repository Structure
 
 rwa-tokenization/
 - ├── contracts/
