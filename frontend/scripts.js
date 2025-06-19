@@ -103,7 +103,7 @@ btnRequestPrice.addEventListener("click", async () => {
 });
 
 // ——————————————
-// 4. CRYPTO FEED (CoinGecko)
+// 4. CRYPTO-FEED (CoinGecko)
 // ——————————————
 
 const btcPriceEl = document.getElementById("btc-price");
