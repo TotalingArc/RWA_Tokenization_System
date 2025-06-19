@@ -4,7 +4,7 @@ if (!window.ethereum) {
 }
 
 // ——————————————
-// 1.GLOBAL SETUP
+// 1. GLOBAL SETUP
 // ——————————————
 
 let provider, signer;
