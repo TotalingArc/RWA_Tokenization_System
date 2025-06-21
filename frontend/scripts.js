@@ -1,4 +1,4 @@
-// Ensure window.ethereum (MetaMask)  available
+// Ensure window.ethereum (MetaMask)  
 if (!window.ethereum) {
   alert('MetaMask is required to use this dashboard.');
 }
