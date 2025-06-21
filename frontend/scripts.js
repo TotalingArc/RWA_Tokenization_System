@@ -25,7 +25,7 @@ const PRICE_CONTRACT_ABI = [
   "function getLatestPrice() public view returns (int256)"
 ];
 
-// 1C. ERC721 ABI snippet (for NFT Viewer)
+// 1C. ERC721 ABI snippet (NFT Viewer)
 const ERC721_ABI = [
   // tokenURI(uint256) returns string
   "function tokenURI(uint256 tokenId) external view returns (string memory)"
