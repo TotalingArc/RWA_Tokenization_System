@@ -52,7 +52,7 @@ rwa-tokenization/
 - ├── README.md # This file
 - ├── package.json # NPM dependencies & scripts
 - ├── hardhat.config.js # Hardhat config
-- ├── .env # Environment variables (e.g. RPC URLs, keys)
+- ├── .env # Environment variables ( RPC URLs, keys)
 - └── .gitignore
 
 ##  Prerequisites
