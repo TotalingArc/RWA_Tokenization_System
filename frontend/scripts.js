@@ -195,7 +195,7 @@ btnUpload.addEventListener("click", async () => {
     return;
   }
 
-  // Placeholder: Here you would integrate with IPFS or your preferred storage.
+  // Placeholder: Here you would integrate  IPFS or your preferred storage.
   // For example, use Pinata SDK or web3.storage to upload `file`.
   // This demo simply shows the file name and size.
 
