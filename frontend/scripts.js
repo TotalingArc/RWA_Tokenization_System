@@ -18,7 +18,7 @@ const MINT_CONTRACT_ABI = [
   "function mint(string memory _tokenURI) public returns (uint256)"
 ];
 
-// 1B. Price Oracle Contract (Assumes a function `getLatestPrice() returns (int256)`)
+// 1B. Price Oracle Contract (Assumes  function `getLatestPrice() returns (int256)`)
 const PRICE_CONTRACT_ADDRESS = "0xYYYYYYYYYYYYYYYYYYYYYYYYYY";
 const PRICE_CONTRACT_ABI = [
   // Minimal ABI: getLatestPrice()
