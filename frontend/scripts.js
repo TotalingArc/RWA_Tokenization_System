@@ -9,7 +9,7 @@ if (!window.ethereum) {
 
 let provider, signer;
 
-// Replace these placeholders with your actual contract addresses and ABIs:
+// Replace placeholders with your actual contract addresses and ABIs:
 
 // 1A. NFT Mint Contract (Assumes a function `mint(string tokenURI)`)
 const MINT_CONTRACT_ADDRESS = "0xXXXXXXXXXXXXXXXXXXXXXX";
