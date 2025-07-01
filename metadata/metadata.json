@@ -1,8 +1,8 @@
 {
   "name": "Property Address, City, State",
   "description": "Tokenized real estate NFT with bundled image and deed document.",
-  "image": "ipfs://bafybeievn56hzxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/image.jpg",
-  "external_url": "https://www.zillow.com/homedetails/xxxxxxxxxxxxxxxxxxxxxxxx/183567373_zpid/",
+  "image": "ipfs://bafybeievn56hzxxxxxxxxxxxxxxxxxxxxxxxxxxx/image.jpg",
+  "external_url": "https://www.zillow.com/homedetails/xxxxxxxxxxxxxxxxxxxxxx/183567373_zpid/",
   "attributes": [
     {
       "trait_type": "Bedrooms",
