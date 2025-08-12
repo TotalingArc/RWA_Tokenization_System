@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-//functions client.
+//functions clients.
 
 import { IFunctionsRouter } from "./IFunctionsRouter.sol";
 import { IFunctionsClient } from "./IFunctionsClient.sol";
